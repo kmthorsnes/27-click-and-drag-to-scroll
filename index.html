@@ -44,6 +44,7 @@ slider.addEventListener('mousedown', (e) => {
   isDown = true; 
   slider.classList.add('active');
   startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft; 
   console.log(startX);
 });
 
@@ -56,13 +57,14 @@ slider.addEventListener('mouseleave', () => {
 slider.addEventListener('mouseup', () => {
   isDown = false; 
   slider.classList.remove('active');
-
+ 
 });
 
-slider.addEventListener('mousemove', () => {
+slider.addEventListener('mousemove', (e) => {
   if (!isDown) return; // stopper funksjonen fra å kjøre
-  console.count(isDown);
-  console.log(startX);
+  e.preventDefault();
+  const X = e.pageX - slider.offsetLeft;
+  console.log({X, startX});
 });
 
 </script>
