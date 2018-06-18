@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Click and Drag</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="items">
     <div class="item item1">01</div>
@@ -34,42 +36,45 @@
     <div class="item item25">25</div>
   </div>
 
-<script>
-const slider = document.querySelector('.items');
-let isDown = false;
-let startX;
-let scrollLeft; 
+  <script>
+    const slider = document.querySelector('.items');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-slider.addEventListener('mousedown', (e) => {
-  isDown = true; 
-  slider.classList.add('active');
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft; 
-  console.log(startX);
-});
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+      console.log(startX);
+    });
 
-slider.addEventListener('mouseleave', () => {
-  isDown = false; 
-  slider.classList.remove('active');
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
 
-});
+    });
 
-slider.addEventListener('mouseup', () => {
-  isDown = false; 
-  slider.classList.remove('active');
- 
-});
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
 
-slider.addEventListener('mousemove', (e) => {
-  if (!isDown) return; // stopper funksjonen fra å kjøre
-  e.preventDefault(); // stopper funksjonen fra å selecte text som skulle være der. greit for spesifikke browsers
-  const x = e.pageX - slider.offsetLeft;
-  console.log({x, startX});
-  const walk = x - startX; // gir oss hvor langt hvor har flyttet oss
-  console.log(walk); 
-});
+    });
 
-</script>
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return; // stopper funksjonen fra å kjøre
+      e.preventDefault(); // stopper funksjonen fra å selecte text som skulle være der. greit for spesifikke browsers
+      const x = e.pageX - slider.offsetLeft;
+      console.log({
+        x,
+        startX
+      });
+      const walk = (x - startX) * 3; // makes scroll effect triple for the movement
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  </script>
 
-  </body>
+</body>
+
 </html>
