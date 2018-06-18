@@ -62,9 +62,11 @@ slider.addEventListener('mouseup', () => {
 
 slider.addEventListener('mousemove', (e) => {
   if (!isDown) return; // stopper funksjonen fra å kjøre
-  e.preventDefault();
-  const X = e.pageX - slider.offsetLeft;
-  console.log({X, startX});
+  e.preventDefault(); // stopper funksjonen fra å selecte text som skulle være der. greit for spesifikke browsers
+  const x = e.pageX - slider.offsetLeft;
+  console.log({x, startX});
+  const walk = x - startX; // gir oss hvor langt hvor har flyttet oss
+  console.log(walk); 
 });
 
 </script>
