@@ -41,18 +41,23 @@ let startX;
 let scrollLeft; 
 
 slider.addEventListener('mousedown', () => {
-
+  isDown = true; 
 });
 
 slider.addEventListener('mouseleave', () => {
+  isDown = false; 
 
 });
 
 slider.addEventListener('mouseup', () => {
+  isDown = false; 
 
 });
 
 slider.addEventListener('mousemove', () => {
+  if (!isDown) return; // stopper funksjonen fra å kjøre
+  console.log(isDown);
+  console.log('fungér da!');
 
 });
 
